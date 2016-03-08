@@ -1,7 +1,3 @@
-title: Featured Image
-tags:
----
-
 # Hexo Featured Image
 
 A Hexo plugin to allow adding featured images with `featured_image` in front-matter and using it in post or have it output in the content.json if used together with [hexo-generator-json-content](https://github.com/alexbruno/hexo-generator-json-content).
