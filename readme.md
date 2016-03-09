@@ -2,6 +2,8 @@
 
 A Hexo plugin to allow adding featured images with `featured_image` in front-matter and using it in post and/or have it output in the content.json if used together with [hexo-generator-json-content](https://github.com/alexbruno/hexo-generator-json-content).
 
+`thumbnail` is also supported, and works the same as `featured_image`.
+
 For example:
 
 `CoolPost.md`
@@ -9,6 +11,7 @@ For example:
 	---
 	title: Cool post
 	featured_image: my_img.png
+	thumbnail: my_img_thumbnail.png
 	---
 	What a cool blog I have!
 
@@ -69,5 +72,6 @@ This plugin plays nicely with [hexo-generator-json-content](https://github.com/a
         posts: {
         	...
             featured_image: true
+            thumbnail: true # if you want thumbnail to be added as well
         }
     }

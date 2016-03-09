@@ -16,10 +16,17 @@ if (!post_asset_folder) {
 hexo.extend.filter.register('before_post_render', function(data) {
 	var featured_image = yaml.loadFront(data.raw).featured_image;
 	if (featured_image){
+		var thumbnail = yaml.loadFront(data.raw).thumbnail;
 		if (post_asset_folder) {
 			data.featured_image = data.permalink + featured_image;
+			if(thumbnail){
+				data.thumbnail = data.permalink + thumbnail;
+			}
 		} else {
 			data.featured_image = imagesPath + featured_image;
+			if(thumbnail){
+				data.thumbnail = imagesPath + thumbnail;
+			}
 		}
 	}
 	return data;
@@ -32,7 +39,7 @@ hexo.extend.filter.register('before_exit', function() {
 	};
 	var postsCfg = jsonContentCfg.hasOwnProperty('posts') ? jsonContentCfg.posts : {};
 
-	if (postsCfg.featured_image && fs.existsSync(contentJsonPath)) {
+	if ((postsCfg.featured_image) && fs.existsSync(contentJsonPath)) {
 		var postsObject = {};
 		var posts = hexo.locals.get('posts');
 		posts.forEach(function(post) {
@@ -46,6 +53,9 @@ hexo.extend.filter.register('before_exit', function() {
 			if (fullPost && fullPost.featured_image) {
 				console.log('fullPost.featured_image', fullPost.featured_image);
 				post.featured_image = fullPost.featured_image;
+				if(postsCfg.thumbnail && fullPost.thumbnail){
+					post.thumbnail = fullPost.thumbnail;
+				}
 			}
 			return post;
 		});
