@@ -1,24 +1,24 @@
 {
-	"name": "hexo-featured-image",
-	"description": "A plugin for the Hexo static site generator to add support for featured images in posts and json-content.",
-    "author": "Daniel Skogly (http://www.pnkt.no)",
-    "homepage": "https://github.com/poacher2k/hexo-featured-image",
-	"keywords": [
-		"hexo",
-		"featured",
-		"image",
-        "plugin"
-	],
-	"version": "0.0.1",
-	"main": "index",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/poacher2k/hexo-featured-image.git"
-	},
-	"dependencies": {
-		"hexo-fs": "^0.1.5",
-		"yaml-front-matter": "^3.4.0"
-	},
-	"devDependencies": {}
+  "name": "hexo-featured-image",
+  "description": "A plugin for the Hexo static site generator to add support for featured images in posts and json-content.",
+  "author": "Daniel Skogly (http://www.pnkt.no)",
+  "homepage": "https://github.com/poacher2k/hexo-featured-image",
+  "keywords": [
+    "hexo",
+    "featured",
+    "image",
+    "plugin"
+  ],
+  "version": "0.0.2",
+  "main": "index",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/poacher2k/hexo-featured-image.git"
+  },
+  "dependencies": {
+    "hexo-fs": "^0.1.5",
+    "yaml-front-matter": "^3.4.0"
+  },
+  "devDependencies": {}
 }
