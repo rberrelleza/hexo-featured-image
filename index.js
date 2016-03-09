@@ -3,7 +3,7 @@ var yaml = require('yaml-front-matter');
 
 var contentJsonPath = hexo.public_dir + 'content.json';
 var post_asset_folder = hexo.config.post_asset_folder;
-var imagesPath = '/';
+var imagesPath = hexo.config.url + hexo.config.root;
 if (!post_asset_folder) {
 	if (hexo.config.image_dir) {
 		imagesPath += hexo.config.image_dir;
@@ -19,7 +19,7 @@ hexo.extend.filter.register('before_post_render', function(data) {
 		if (post_asset_folder) {
 			data.featured_image = data.permalink + featured_image;
 		} else {
-			data.featured_image = hexo.config.url + imagesPath + featured_image;
+			data.featured_image = imagesPath + featured_image;
 		}
 	}
 	return data;
@@ -33,7 +33,6 @@ hexo.extend.filter.register('before_exit', function() {
 	var postsCfg = jsonContentCfg.hasOwnProperty('posts') ? jsonContentCfg.posts : {};
 
 	if (postsCfg.featured_image && fs.existsSync(contentJsonPath)) {
-
 		var postsObject = {};
 		var posts = hexo.locals.get('posts');
 		posts.forEach(function(post) {
@@ -45,11 +44,8 @@ hexo.extend.filter.register('before_exit', function() {
 		content.posts = contentPosts.map(function(post) {
 			var fullPost = postsObject[post.path];
 			if (fullPost && fullPost.featured_image) {
-				if (post_asset_folder) {
-					post.featured_image = fullPost.permalink + fullPost.featured_image;
-				} else {
-					post.featured_image = hexo.config.url + imagesPath + fullPost.featured_image;
-				}
+				console.log('fullPost.featured_image', fullPost.featured_image);
+				post.featured_image = fullPost.featured_image;
 			}
 			return post;
 		});
