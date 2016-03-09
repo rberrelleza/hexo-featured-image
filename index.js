@@ -16,14 +16,12 @@ if (!post_asset_folder) {
 hexo.extend.filter.register('before_post_render', function(data) {
 	var featured_image = yaml.loadFront(data.raw).featured_image;
 	if (featured_image){
-		console.log('has featured image', featured_image);
 		if (post_asset_folder) {
 			data.featured_image = data.permalink + featured_image;
 		} else {
 			data.featured_image = hexo.config.url + imagesPath + featured_image;
 		}
 	}
-	console.log('data.featured_image after', data.featured_image);
 	return data;
 });
 

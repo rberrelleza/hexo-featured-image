@@ -27,7 +27,12 @@ For example:
     <% } %>
     ...
 
+## Installation
+	npm install --save hexo-featured-image
+## Usage
+This plugin will make automatically make `post.featured_image` available in your templates when you run `hexo server` or `hexo generate`.
 
+If you are using [hexo-generator-json-content](https://github.com/alexbruno/hexo-generator-json-content), it will automatically add the `featured_image` property to `content.json` when you run `hexo generate` and when you __exit__ `hexo server`.
 ## Configuration
 ### URL
 For this plugin to work correctly, you must set `url` to your URL in `_config.yml`. For example, if you are working locally using the default url (http://0.0.0.0:4000/), set it like this:
