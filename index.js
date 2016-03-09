@@ -51,7 +51,6 @@ hexo.extend.filter.register('before_exit', function() {
 		content.posts = contentPosts.map(function(post) {
 			var fullPost = postsObject[post.path];
 			if (fullPost && fullPost.featured_image) {
-				console.log('fullPost.featured_image', fullPost.featured_image);
 				post.featured_image = fullPost.featured_image;
 				if(postsCfg.thumbnail && fullPost.thumbnail){
 					post.thumbnail = fullPost.thumbnail;
