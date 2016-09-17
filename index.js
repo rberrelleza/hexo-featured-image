@@ -17,16 +17,21 @@ hexo.extend.filter.register('before_post_render', function(data) {
 	var featured_image = yaml.loadFront(data.raw).featured_image;
 	if (featured_image){
 		var thumbnail = yaml.loadFront(data.raw).thumbnail;
+		var imagePrefix = imagesPath;
+		// Use post asset folder
 		if (post_asset_folder) {
-			data.featured_image = data.permalink + featured_image;
-			if(thumbnail){
-				data.thumbnail = data.permalink + thumbnail;
-			}
-		} else {
-			data.featured_image = imagesPath + featured_image;
-			if(thumbnail){
-				data.thumbnail = imagesPath + thumbnail;
-			}
+			imagePrefix = data.permalink;
+		}
+		// Check if the featured image path is an absolute URI
+		if (featured_image.indexOf('http') === 0) {
+			imagePrefix = ''; // Use no prefix since we have the full URI
+		}
+
+		// Compile the featured image URI
+		data.featured_image = imagePrefix + featured_image;
+
+		if (thumbnail) {
+			data.thumbnail = imagePrefix + thumbnail;
 		}
 	}
 	return data;
