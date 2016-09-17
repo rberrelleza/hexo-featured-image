@@ -23,8 +23,9 @@ hexo.extend.filter.register('before_post_render', function(data) {
 			imagePrefix = data.permalink;
 		}
 		// Check if the featured image path is an absolute URI
-		if (featured_image.indexOf('http') === 0) {
-			imagePrefix = ''; // Use no prefix since we have the full URI
+		if (featured_image.indexOf('http') === 0 || featured_image.indexOf('/') === 0) {
+			// Use no prefix since we have the full or relative URI
+			imagePrefix = '';
 		}
 
 		// Compile the featured image URI
