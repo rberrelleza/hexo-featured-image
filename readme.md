@@ -18,22 +18,24 @@ For example:
 By using the Hexo Front Featured Image plugin, you can specify a post's featured image in its front matter.
 
 
-The absolute path to `my_img.png` will be available through `post.featured_image` in your templates.
+The absolute path to `my_img.png` will be available through `page.featured_image` in your templates.
 
 For example:
 
 `article.ejs`
 
 	...
-	<% if (post.featured_image){ %>
-        <img src="<%- post.featured_image %>">
+	<% if (page.featured_image){ %>
+        <img src="<%- page.featured_image %>">
     <% } %>
     ...
 
 ## Installation
 	npm install --save hexo-featured-image
+or
+	yarn add hexo-featured-image
 ## Usage
-This plugin will make automatically make `post.featured_image` available in your templates when you run `hexo server` or `hexo generate`.
+This plugin will make automatically make `page.featured_image` available in your templates when you run `hexo server` or `hexo generate`.
 
 If you are using [hexo-generator-json-content](https://github.com/alexbruno/hexo-generator-json-content), it will automatically add the `featured_image` property to `content.json` when you run `hexo generate` and when you __exit__ `hexo server`.
 ## Configuration
