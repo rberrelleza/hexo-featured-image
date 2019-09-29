@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "hexo-fs": "^0.2.2",
-    "yaml-front-matter": "^3.4.0"
+    "hexo-front-matter": "^1.0.0"
   },
   "devDependencies": {}
 }
