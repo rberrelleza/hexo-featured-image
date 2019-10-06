@@ -1,5 +1,5 @@
 var fs = require('hexo-fs');
-var yaml = require('yaml-front-matter');
+var fm = require('hexo-front-matter');
 
 var contentJsonPath = hexo.public_dir + 'content.json';
 var post_asset_folder = hexo.config.post_asset_folder;
@@ -14,9 +14,10 @@ if (!post_asset_folder) {
 }
 
 hexo.extend.filter.register('before_post_render', function(data) {
-	var featured_image = yaml.loadFront(data.raw).featured_image;
+	var front = fm.parse(data.raw);
+	var featured_image = front.featured_image;
 	if (featured_image){
-		var thumbnail = yaml.loadFront(data.raw).thumbnail;
+		var thumbnail = front.thumbnail;
 		var imagePrefix = imagesPath;
 		// Use post asset folder
 		if (post_asset_folder) {
