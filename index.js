@@ -16,7 +16,7 @@ if (!post_asset_folder) {
 hexo.extend.filter.register('before_post_render', function(data) {
 	var front = fm.parse(data.raw);
 	var featured_image = front.featured_image;
-	if (featured_image){
+	if (featured_image) {
 		var thumbnail = front.thumbnail;
 		var imagePrefix = imagesPath;
 		// Use post asset folder
@@ -24,7 +24,10 @@ hexo.extend.filter.register('before_post_render', function(data) {
 			imagePrefix = data.permalink;
 		}
 		// Check if the featured image path is an absolute URI
-		if (featured_image.indexOf('http') === 0 || featured_image.indexOf('/') === 0) {
+		if (
+			featured_image.indexOf('http') === 0 ||
+			featured_image.indexOf('/') === 0
+		) {
 			// Use no prefix since we have the full or relative URI
 			imagePrefix = '';
 		}
@@ -41,12 +44,16 @@ hexo.extend.filter.register('before_post_render', function(data) {
 
 hexo.extend.filter.register('before_exit', function() {
 	// to work smoothly with hexo_generator_json_content
-	var jsonContentCfg = hexo.config.hasOwnProperty('jsonContent') ? hexo.config.jsonContent : {
-		meta: true
-	};
-	var postsCfg = jsonContentCfg.hasOwnProperty('posts') ? jsonContentCfg.posts : {};
+	var jsonContentCfg = hexo.config.hasOwnProperty('jsonContent')
+		? hexo.config.jsonContent
+		: {
+				meta: true,
+		  };
+	var postsCfg = jsonContentCfg.hasOwnProperty('posts')
+		? jsonContentCfg.posts
+		: {};
 
-	if ((postsCfg.featured_image) && fs.existsSync(contentJsonPath)) {
+	if (postsCfg.featured_image && fs.existsSync(contentJsonPath)) {
 		var postsObject = {};
 		var posts = hexo.locals.get('posts');
 		posts.forEach(function(post) {
@@ -59,7 +66,7 @@ hexo.extend.filter.register('before_exit', function() {
 			var fullPost = postsObject[post.path];
 			if (fullPost && fullPost.featured_image) {
 				post.featured_image = fullPost.featured_image;
-				if(postsCfg.thumbnail && fullPost.thumbnail){
+				if (postsCfg.thumbnail && fullPost.thumbnail) {
 					post.thumbnail = fullPost.thumbnail;
 				}
 			}
