@@ -5,10 +5,6 @@ var contentJsonPath = hexo.public_dir + 'content.json';
 var post_asset_folder = hexo.config.post_asset_folder;
 var imagesPath = hexo.config.url + hexo.config.root;
 
-if (hexo.config.featured_image && hexo.config.featured_image.relative) {
-	imagesPath = hexo.config.root;
-}
-
 if (!post_asset_folder) {
 	if (hexo.config.image_dir) {
 		imagesPath += hexo.config.image_dir;
@@ -35,6 +31,10 @@ hexo.extend.filter.register('before_post_render', function(data) {
 		) {
 			// Use no prefix since we have the full or relative URI
 			imagePrefix = '';
+		} else {
+			if (hexo.config.featured_image && hexo.config.featured_image.relative) {
+				imagePrefix = '';
+			}
 		}
 
 		// Compile the featured image URI
